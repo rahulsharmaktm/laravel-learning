@@ -21,22 +21,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home', function () {
-   echo "Home";
+    echo "Home";
 });
 
 Route::get('/about', function () {
     return view("about");
-    
 });
 Route::get('/contact', function () {
-    
-   return view("contact");
+
+    return view("contact");
 });
 
 Route::get('/contact', [ContactController::class, 'index']);
 
 // Category Controller 
 Route::get('/all.category', [CategoryController::class, 'AllCat'])->name('all.category');
+Route::post('/category/add', [CategoryController::class, 'AddCat'])->name('store.category');
 
 Route::middleware([
     'auth:sanctum',
