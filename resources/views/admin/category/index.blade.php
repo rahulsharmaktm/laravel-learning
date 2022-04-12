@@ -10,7 +10,7 @@
         <div class="card">
           @if(session('success'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{session('success')}}</strong> 
+            <strong>{{session('success')}}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
 
@@ -20,20 +20,31 @@
             <thead>
               <tr>
                 <th scope="col">SL No</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
+                <th scope="col">Category</th>
+                <th scope="col">User Name</th>
                 <th scope="col">Created At</th>
               </tr>
             </thead>
             <tbody>
+             
+              @foreach($categories as $category)
               <tr>
-                <th scope="row"></th>
-                <td> </td>
-                <td></td>
-                <td></td>
+                <th scope="row">{{$categories->firstItem()+$loop->index}}</th>
+                <td> {{$category->category_name}} </td>
+                <td>{{$category->name}}</td>
+                <td>
+                  @if($category->created_at == NULL)
+                  <span class="text-danger">No Date set</span>
+                  @else
+                  {{Carbon\Carbon::parse($category->created_at)->diffForHumans()}}
+                  @endif
+                </td>
               </tr>
+              @endforeach
             </tbody>
           </table>
+
+          {{$categories->links()}}
         </div>
       </div>
       <div class="col-md-4">
