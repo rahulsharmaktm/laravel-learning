@@ -37,6 +37,11 @@ Route::get('/contact', [ContactController::class, 'index']);
 // Category Controller 
 Route::get('/all.category', [CategoryController::class, 'AllCat'])->name('all.category');
 Route::post('/add.category', [CategoryController::class, 'store'])->name('store.category');
+Route::get('/category/edit/{id}', [CategoryController::class, 'Edit']);
+Route::post('/category/update/{id}', [CategoryController::class, 'Update']);
+Route::get('/softDelete/category/{id}', [CategoryController::class, 'SoftDeletes']);
+Route::get('/category/restore/{id}', [CategoryController::class, 'Restore']);
+Route::get('/category/pdelete/{id}', [CategoryController::class, 'Pdelete']);
 
 Route::middleware([
     'auth:sanctum',
