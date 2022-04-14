@@ -40,7 +40,7 @@
                   {{Carbon\Carbon::parse($category->created_at)->diffForHumans()}}
                   @endif
                 </td>
-                <td>               
+                <td>
                   <a href=" {{ url('category/edit/'.$category->id)}} " class="btn btn-info">Edit</a>
                   <a href="{{url('softDelete/category/'.$category->id)}}" class="btn btn-danger">Delete</a>
                 </td>
@@ -79,7 +79,7 @@
     <div class="row mt-4">
       <div class="col-md-8">
         <div class="card p-2">
-        
+
           <div class="card-header">Trach Category</div>
           <table class="table">
             <thead>
@@ -105,9 +105,9 @@
                   {{Carbon\Carbon::parse($category->created_at)->diffForHumans()}}
                   @endif
                 </td>
-                <td>               
-                <a href=" {{ url('category/restore/'.$category->id)}} " class="btn btn-info">Restore</a>
-                
+                <td>
+                  <a href=" {{ url('category/restore/'.$category->id)}} " class="btn btn-info">Restore</a>
+
                   <a href="{{ url('category/pdelete/'.$category->id)}}" class="btn btn-danger">Delete</a>
                 </td>
               </tr>
@@ -119,9 +119,9 @@
         </div>
       </div>
       <div class="col-md4">
-        
+
       </div>
-     
+
     </div>
-    </div>
+  </div>
 </x-app-layout>

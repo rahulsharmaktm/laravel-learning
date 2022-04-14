@@ -21,7 +21,7 @@ class CategoryController extends Controller
         $categories = Category::latest()->paginate(5);
         $trachCat = Category::onlyTrashed()->latest()->paginate(3);
         // $categories = DB::table('categories')->latest()->paginate(5);
-        return view('admin.category.index', compact('categories','trachCat'));
+        return view('admin.category.index', compact('categories', 'trachCat'));
     }
     public function store(Request $request)
     {
@@ -72,20 +72,21 @@ class CategoryController extends Controller
     }
 
     // DELETE function
-    public function SoftDeletes($id){
-    //    $delete = Category::find::($id)->delete();
-       $delete = Category::find($id)->delete();
-       return Redirect()->back()->with('success', 'Category delete Successfull');
-       
-
+    public function SoftDeletes($id)
+    {
+        //    $delete = Category::find::($id)->delete();
+        $delete = Category::find($id)->delete();
+        return Redirect()->back()->with('success', 'Category delete Successfull');
     }
     // Restore function 
-    public function Restore($id){
+    public function Restore($id)
+    {
         $delete = Category::withTrashed()->find($id)->restore();
         return Redirect()->back()->with('success', 'Category Restore Successfull');
     }
     // PDelete function 
-    public function Pdelete($id){
+    public function Pdelete($id)
+    {
         $delete = Category::onlyTrashed()->find($id)->forceDelete();
         return Redirect()->back()->with('success', 'Category PDelete Successfull');
     }
