@@ -44,11 +44,12 @@ Route::get('/softDelete/category/{id}', [CategoryController::class, 'SoftDeletes
 Route::get('/category/restore/{id}', [CategoryController::class, 'Restore']);
 Route::get('/category/pdelete/{id}', [CategoryController::class, 'Pdelete']);
 
-// CATEGORY CONTROLLER END 
+// CATEGORY CONTROLLER END  
 
-// BRAND ROUTE START
+// BRAND ROUTE START brand/edit
 Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
 Route::post('/add/brand',[BrandController::class, 'StoreBrand'])->name('add.brand');
+Route::get('/brand/edit/{id}', [BrandController::class, 'Edit']);
 // BRAND ROUTE END 
 
 

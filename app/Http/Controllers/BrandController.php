@@ -32,12 +32,11 @@ class BrandController extends Controller
         $name_gen = hexdec(uniqid());
         $img_ext = strtolower($brand_image->getClientOriginalExtension());
         $img_name = $name_gen . '.' . $img_ext;
-                        
+
         $up_location = 'image/brand/';
         $last_img = $up_location . $img_name;
         $brand_image->move($up_location, $img_name);
 
- 
         Brand::insert([
             'brand_name' => $request->brand_name,
             'brand_image' => $last_img,
@@ -45,7 +44,13 @@ class BrandController extends Controller
         ]);
 
 
-       
+
         return Redirect()->back()->with('success', 'Brand Inserted Successfully');
+    }
+    // EDIT BRAND 
+
+    public function Edit($id){
+        $brands = Brand::find($id);
+        return view('admin.Brand.edit', compact('brands'));
     }
 }
