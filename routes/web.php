@@ -1,12 +1,10 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,24 +15,19 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home', function () {
     echo "Home";
 });
-
 Route::get('/about', function () {
     return view("about");
 });
 Route::get('/contact', function () {
-
     return view("contact");
 });
-
 Route::get('/contact', [ContactController::class, 'index']);
-
 // CATEGORY ROUTE 
 Route::get('/all.category', [CategoryController::class, 'AllCat'])->name('all.category');
 Route::post('/add.category', [CategoryController::class, 'store'])->name('store.category');
@@ -43,26 +36,24 @@ Route::post('/category/update/{id}', [CategoryController::class, 'Update']);
 Route::get('/softDelete/category/{id}', [CategoryController::class, 'SoftDeletes']);
 Route::get('/category/restore/{id}', [CategoryController::class, 'Restore']);
 Route::get('/category/pdelete/{id}', [CategoryController::class, 'Pdelete']);
-
 // CATEGORY ROUTE END  
-
 // BRAND ROUTE START 
 Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
 Route::post('/add/brand', [BrandController::class, 'StoreBrand'])->name('add.brand');
 Route::get('/brand/edit/{id}', [BrandController::class, 'Edit']);
 Route::post('/brand/update/{id}', [BrandController::class, 'Update']);
 Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
-// BRAND ROUTE END 
-
-
-
+// BRAND ROUTE END  
+// MULTI IMAGE ROUTE START  
+Route::get('/multi/image', [BrandController::class, 'Multipic'])->name('multi.image');
+Route::post('/add.image', [BrandController::class, 'AddMultip'])->name('add.image');
+// MULTI IMAGE ROUTE END 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-
         // $users = User::all();
         $users = DB::table('users')->get();
         return view('dashboard', compact('users'));
