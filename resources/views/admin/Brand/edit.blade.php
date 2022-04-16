@@ -4,6 +4,13 @@
             Edit Brand
         </h2>
     </x-slot>
+    @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{session('success')}}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    @endif
     <div class="container mt-4">
         <div class="row">
 
@@ -11,8 +18,9 @@
                 <div class="card">
                     <div class="card-header">Update Brand</div>
                     <div class="card-body">
-                        <form action=" {{url('brands/update/'.$brands->id)}} " method="POST">
+                        <form action=" {{url('brand/update/'.$brands->id)}} " method="POST" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="old_image" value="{{$brands->brand_image}}">
                             <div class="mb-3">
                                 <label class="form-label">Update Brand Name</label>
 
@@ -25,7 +33,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <img src="{{asset($brands->brand_image)}}" alt="" style="width:400px; height:200px;">
+                                <img src="{{asset($brands->brand_image)}}" alt="">
                             </div>
                             <button type="submit" class="btn btn-primary mt-3">Update Brand</button>
                         </form>

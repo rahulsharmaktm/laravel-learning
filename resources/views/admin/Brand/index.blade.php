@@ -32,7 +32,7 @@
                             <tr>
                                 <th scope="row">{{$brands->firstItem()+$loop->index}}</th>
                                 <td> {{$brand->brand_name}} </td>
-                                <td> <img src="{{asset($brand->brand_image)}}" alt="img" style="height: 40px;width:40px"> </td>
+                                <td> <img src="{{asset($brand->brand_image)}}" alt="img"> </td>
 
                                 <td>
                                     @if($brand->created_at == NULL)
@@ -43,7 +43,7 @@
                                 </td>
                                 <td>
                                     <a href=" {{ url('brand/edit/'.$brand->id)}} " class="btn btn-info">Edit</a>
-                                    <a href="{{url('brand/delete/'.$brand->id)}}" class="btn btn-danger">Delete</a>
+                                    <a href="{{url('brand/delete/'.$brand->id)}}" onclick="return confirm('Are you sure to delete')" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
